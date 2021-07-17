@@ -1,25 +1,14 @@
 package ua.shykun.springpayment;
 
-import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
-import org.apache.http.util.EntityUtils;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.net.HttpURLConnection;
 import java.net.URI;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.net.URLEncoder;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Random;
 import java.util.UUID;
 
@@ -56,12 +45,7 @@ public class RestController {
                     .addParameter("ua", "Chrome");
             final URI uri = builder.build();
             final HttpPost request = new HttpPost(uri);
-            final HttpResponse response = client.execute(request);
-            String json = EntityUtils.toString(response.getEntity(), "UTF-8");
-            System.out.println("response body: " + json);
-            System.out.println("Execute request to google analytics measurement protocol " + response.getStatusLine().getStatusCode());
-        } catch (URISyntaxException | IOException e) {
-            System.out.println("Not able to push purchase event to google analytics " + e);
+            client.execute(request);
         }
     }
 }

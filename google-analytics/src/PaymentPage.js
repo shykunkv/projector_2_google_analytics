@@ -2,11 +2,6 @@ import React, { Component } from 'react';
 import './App.css';
 import ReactGA from "react-ga";
 
-// function callApi() {
-//     return fetch("https://api.com/?param=" + param);
-// }
-
-
 class PaymentPage extends Component {
     state = {
         loading: false
